@@ -8,8 +8,31 @@ export type Navlink = {
 
 export const navlinks:Navlink[] =[
     {
-        name:"home",
-        path:"/"
+        name:"Home",
+        path:"/",
+
     },
+    {
+        name:"Jobs",
+        path:"/jobs"
+    },
+    {
+        name:"projects",
+        path:"/projects"
+    },
+    {
+        name:"devs",
+        path:"/devs"
+    }
     
+]
+
+export const authLinks: Navlink[]=[
+    {
+        name:"login",
+        path:"/login"
+    },{
+        name:"Sign Up",
+        path:"/sign-up"
+    }
 ]
