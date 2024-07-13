@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // TODO   IMPLEMENT REGISTERATION USING STATE OR ACIONS WITH FORMDTA
 
 const DevelopersForm = () => {
-  const inputClass = "w-full p-2 border dark:border-gray-700 rounded bg-inherit"
-  const { register, setValue, handleSubmit, formState: { errors } } = useForm<DeveloperType>({
+  const inputClass = "w-full p-2 border dark:border-gray-700 rounded bg-inherit outline-none "
+  const { register, handleSubmit, formState: { errors } } = useForm<DeveloperType>({
     resolver:zodResolver(developerSchema),
     mode:'onBlur'
   });
@@ -31,7 +31,7 @@ const DevelopersForm = () => {
             register={register}
             name={fieldName as ValidDeveloperFormNames}
             error={errors[fieldName as keyof typeof errors] as FieldError}
-            cssClass={inputClass}
+            cssClass={`${errors[fieldName as keyof typeof errors]?.message  ? " border border-red-500  ": " focus:border-2 dark:focus:border-yellow-100 "} ${inputClass}`}
             />
            ))}
            
