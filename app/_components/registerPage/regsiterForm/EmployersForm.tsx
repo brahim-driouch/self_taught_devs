@@ -53,11 +53,11 @@ const EmployersForm = () => {
         />
 
         {categories && categories.length > 0 && (
-          <div className="absolute top-20 left-0 p-2 flex flex-col bg-white w-full">
+          <div className="absolute top-20 left-0 p-2 flex flex-col dark:bg-gray-900 w-full">
             {categories.map((cat, index) => (
               <span
                 onClick={handleSpanClick}
-                className="cursor-pointer hover:bg-gray-50 p-2"
+                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 p-2"
                 key={index}
               >
                 {cat}
@@ -71,7 +71,7 @@ const EmployersForm = () => {
           onChange={handleOnChange}
           placeholder="Business category"
         />
-        <select className="w-full p-2 border dark:border-gray-700 rounded bg-inherit dark:bg-gray-900">
+        <select className="w-full p-2 border  dark:border-gray-700 rounded bg-inherit dark:bg-gray-900">
           <option selected disabled>
             Company size
           </option>
