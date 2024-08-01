@@ -5,6 +5,7 @@ const EmployersForm = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categoryInput, setCategoryInput] = useState("");
+  
   const handleSpanClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     const categ = e.currentTarget.textContent;
     setCategories([]);

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/common/topBar/Header";
 import ThemeProvider from "./providers/ThemeProvider";
 
-const poppins = Poppins({
+const roboto = Ubuntu({
   subsets: ["latin"],
-  weight: [ "500", "700", "900"],
+  weight: [ "400","500", "700", ],
 });
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className="dark:bg-gray-900" lang="en"  suppressHydrationWarning>
-      <body className={poppins.className + " dark:text-gray-200 text-gray-600 font-light"}>
+      <body className={roboto.className + " dark:text-gray-200 text-gray-600 font-light text-lg"}>
         <ThemeProvider>
           <main className="max-w-6xl mx-auto flex  min-h-screen flex-col justify-start items-center ">
             <Header />
