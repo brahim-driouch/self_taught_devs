@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/common/topBar/Header";
 import ThemeProvider from "./providers/ThemeProvider";
+import AuthWrapper from "@/AuthWrapper";
 
-const roboto = Ubuntu({
-  subsets: ["latin"],
-  weight: [ "400","500", "700", ],
-});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,13 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html className="dark:bg-gray-900" lang="en"  suppressHydrationWarning>
-      <body className={roboto.className + " dark:text-gray-200 text-gray-600 font-light text-lg"}>
+      <body className={" dark:text-gray-200 text-gray-600 font-light text-lg"}>
+        <AuthWrapper>
         <ThemeProvider>
           <main className="max-w-6xl mx-auto flex  min-h-screen flex-col justify-start items-center ">
             <Header />
             {children}
           </main>
         </ThemeProvider>
+        </AuthWrapper>
       </body>
     </html>
   );

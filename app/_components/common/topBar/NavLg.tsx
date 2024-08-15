@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation"
 const NavLg = () => {
 const pathname = usePathname()
   const links = navlinks
-  console.log(pathname)
   return (
     <nav className="hidden lg:flex">
       <ul className="flex gap-4">
