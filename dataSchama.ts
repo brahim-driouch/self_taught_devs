@@ -32,7 +32,7 @@ export const developerSchema = z.object({
     email:z.string().email({message:"Please enter a valid email."}),
     password:z.string().min(8,{message:"Password must be at least 8 characters."}),
     passwordConfirmation:z.string().min(8,{message:"Passwords do not match."}),
-    isVerfied:z.boolean().default(false).optional(),
+    emailVerified:z.boolean().default(false).optional(),
     accountType:z.nativeEnum(AccountType,{message:"invalid account type."}).default(AccountType.Developer),
     image:z.string().optional(),
     createdAt:z.date().optional(),

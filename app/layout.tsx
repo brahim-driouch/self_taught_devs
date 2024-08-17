@@ -20,12 +20,12 @@ export default function RootLayout({
     <html className="dark:bg-gray-900" lang="en"  suppressHydrationWarning>
       <body className={" dark:text-gray-200 text-gray-600 font-light text-lg"}>
         <AuthWrapper>
-        <ThemeProvider>
-          <main className="max-w-6xl mx-auto flex  min-h-screen flex-col justify-start items-center ">
-            <Header />
-            {children}
-          </main>
-        </ThemeProvider>
+            <ThemeProvider>
+              <main className="max-w-6xl mx-auto flex  min-h-screen flex-col justify-start items-center ">
+                <Header />
+                {children}
+              </main>
+            </ThemeProvider>
         </AuthWrapper>
       </body>
     </html>

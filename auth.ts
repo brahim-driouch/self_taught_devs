@@ -12,13 +12,14 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
  callbacks:{
 
   jwt:async({token})=>{
-    console.log(token)
-    return token
-  }
-  // session:async({session,user})=>{
-  //   session.user.accountType =user.accountType
+  return token
+  },
+  session:async({session,token})=>{
+    if(session){
+      session.user.image = token.picture ?? ""
+    }
 
-  //   return session
-  // }
+    return session
+  }
  }
 })  

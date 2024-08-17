@@ -9,9 +9,12 @@ declare module "next-auth" {
     user: {
       /** The user's postal address. */
       accountType:AccountType
-    } & DefaultSession
+      image:string,
+      id:string,
+      name:string
+    } 
   }
-  interface User {
-    accountType:AccountType
-  }  
+  // interface User {
+  //   accountType:AccountType
+  // }  
 }

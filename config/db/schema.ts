@@ -25,7 +25,7 @@ import {
     email:text("email").unique(),
     image:text("image").default(''),
     password:text("password").default(''),
-    isVerified: timestamp("isVerified", { mode: "date" }),
+    emailVerified: timestamp("emailVerified", { mode: "date" }),
     createdAt:timestamp("createdAt",{mode:"date"}),
     updatedAt:timestamp("updatedAt",{mode:"date"}),
     accountType:accountTypes("accountType").default("Developer")

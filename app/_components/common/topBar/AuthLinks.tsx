@@ -1,36 +1,37 @@
+import { auth } from "@/auth";
+import { authLinks } from "@/constants/navlinks";
+import Link from "next/link";
+import ProfileTag from "../../users/ProfileTag";
 
-import { auth } from "@/auth"
-import { authLinks } from "@/constants/navlinks"
-import Link from "next/link"
+const AuthLinks = async () => {
+  const session = await auth();
+  return session && session.user ? (
+    <ProfileTag />
+    // <ul>
+    //   <li>
+    //     <Link className="bg-red-500 text-white py-2 px-6 rounded hover:bg-red-600" href={"/logout"}>logout</Link>
+    //   </li>
+    // </ul>
+  ) : (
+    <ul className="flex-grow  flex justify-end items-center gap-6 ">
+      <li>
+        <Link
+          href={"/sign-in"}
+          className="py-2 px-6 border border-gray-200 rounded dark:border-gray-600 backdrop-blur-md hover:border-gray-500"
+        >
+          Sign in
+        </Link>
+      </li>
+      <li>
+        <Link
+          href={"/sign-up"}
+          className="bg-orange-500 text-white py-2 px-6 hover:bg-orange-600 rounded"
+        >
+          Sign up
+        </Link>
+      </li>
+    </ul>
+  );
+};
 
-const AuthLinks = async() => {
-     const session = await auth()
-     const isAuthenticated = !!session
-    const isRegisterLinks=(name:string):boolean=>{
-        return name === "Sign Up"
-
-    }
-  
-  return (
-   <ul className="flex gap-4 justify-end">
-    {isAuthenticated ? (
-       <Link href={"/logout"} className="py-1 px-6 bg-red-500 text-white rounded outline-none hover:bg-red-600">
-        log out
-       </Link>
-    ):(
-        authLinks.map((link)=>(
-            <li  key={link.name} className="">
-                <Link href={link.path} className={`${isRegisterLinks(link.name) ? "bg-orange-500 text-white  hover:bg-orange-600 px-4": " px-6 border border-gray-300  dark:border-gray-700"} py-2 rounded py-2 `}>
-                    {link.name}
-                </Link>
-            </li>
-        ))
-    )
-  
-    }
-   </ul>
-
-  )
-}
-
-export default AuthLinks
+export default AuthLinks;

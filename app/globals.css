@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+.slide {
+    animation: slide .8s ease-in-out;
+}
+
+
+@keyframes slide {
+    from {
+        top:-400px
+    }
+    to {
+        top: 0px;
+    }
+}
