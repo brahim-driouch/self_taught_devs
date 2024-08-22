@@ -13,7 +13,8 @@ export enum AccountType  {
     Employer = "Employer"
 
 }
-export const developerFieldNames = ["username","name","email","password","passwordConfirmation"]
+export const userFieldNames = ["username","name","email","password","passwordConfirmation"]
+export const loginFiledNames = ["email","password"]
 export type ValidDeveloperFormNames = "username" |  "name" | "email" | "password" | "passwordConfirmation" | "isVerfied" | "AccountType" | "createdAt" | "updatedAt"
 
 export type FormFieldProps = {

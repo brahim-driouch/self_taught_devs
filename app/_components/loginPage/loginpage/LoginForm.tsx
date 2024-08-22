@@ -1,5 +1,7 @@
+
+
 "use client"
-import { developerFieldNames, developerSchema, DeveloperType, ValidDeveloperFormNames } from "@/dataSchama"
+import {  developerSchema, DeveloperType, loginFiledNames, userFieldNames, ValidDeveloperFormNames } from "@/dataSchama"
 import FormField from "../../reusables/FormField"
 import { FieldError, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,11 +9,11 @@ import userService from "@/http/users";
 import { PiGoogleLogo } from "react-icons/pi";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "@/auth";
-import { signInWithGoogle } from "@/controllers/users";
+import { signInWithGoogle } from "@/controllers/users/userController";
 
 // TODO   IMPLEMENT REGISTERATION USING STATE OR ACIONS WITH FORMDTA
 
-const DevelopersForm = () => {
+const LoginForm = () => {
   const inputClass = "w-full p-2  border dark:border-gray-700 rounded bg-inherit outline-none focus:border-2 dark:focus:border-yellow-100 "
   const { register, handleSubmit, formState: { errors } } = useForm<DeveloperType>({
     resolver:zodResolver(developerSchema),
@@ -42,7 +44,7 @@ const DevelopersForm = () => {
   return (
     <div className="w-full ">
        <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-2">
-           {developerFieldNames.map((fieldName)=>(
+           {loginFiledNames.map((fieldName)=>(
             <FormField
             key={fieldName}
             type= {fieldName === "email" ? "email" : fieldName === "password" || fieldName === "passwordConfirmation" ? "password" : "text"}
@@ -72,4 +74,4 @@ const DevelopersForm = () => {
   )
 }
 
-export default DevelopersForm
+export default LoginForm

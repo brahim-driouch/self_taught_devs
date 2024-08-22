@@ -1,4 +1,4 @@
-import { registerDeveloper } from "@/controllers/users";
+import userController from "@/controllers";
 import { DeveloperType, MyResponseType } from "@/dataSchama";
 import { NextResponse } from "next/server";
 import { ZodIssue } from "zod";
@@ -10,7 +10,7 @@ export async function POST(req:Request):Promise<NextResponse<MyResponseType>> {
 
     try {
         const dev = await req.json() as DeveloperType
-        const result = await registerDeveloper(dev)
+        const result = await userController.registerNewUser(dev)
    
     if(result.errors){
         return NextResponse.json({

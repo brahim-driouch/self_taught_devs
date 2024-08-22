@@ -1,8 +1,8 @@
 "use server"
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { developerSchema, DeveloperType ,MyResponseType} from "@/dataSchama";
 import { error } from "console";
-export async function registerDeveloper(dev:DeveloperType):Promise<MyResponseType> {
+export async function registerNewUser(dev:DeveloperType):Promise<MyResponseType> {
     
     try {
         const res =  developerSchema.safeParse(dev)
@@ -49,4 +49,10 @@ export async function signInWithGoogle() {
         
     })
     
+}
+
+export async function logout(){
+    await signOut({
+        redirectTo:"/"
+    })
 }

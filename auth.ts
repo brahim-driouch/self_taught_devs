@@ -17,6 +17,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   session:async({session,token})=>{
     if(session){
       session.user.image = token.picture ?? ""
+      session.user.email = token.email!
     }
 
     return session

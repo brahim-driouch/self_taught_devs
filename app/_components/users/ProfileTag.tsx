@@ -3,10 +3,9 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useState } from "react";
-import { BiLogOut } from "react-icons/bi";
-import { CgLogOut } from "react-icons/cg";
 import { GoProject } from "react-icons/go";
 import { PiRobotFill } from "react-icons/pi";
+import Logout from "./Logout";
 
 const ProfileCrad = ({ showCard }: { showCard: () => void }) => {
   return (
@@ -23,10 +22,7 @@ const ProfileCrad = ({ showCard }: { showCard: () => void }) => {
         <PiRobotFill />
         <span>Profile</span>
       </Link>
-      <Link href="/logout" className="flex justify-center items-center gap-2 p-1">
-        <CgLogOut />
-        <span>logout</span>
-      </Link>
+     <Logout/>
     </div>
   );
 };

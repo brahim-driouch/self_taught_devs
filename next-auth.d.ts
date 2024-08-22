@@ -11,7 +11,8 @@ declare module "next-auth" {
       accountType:AccountType
       image:string,
       id:string,
-      name:string
+      name:string,
+      email:string
     } 
   }
   // interface User {
