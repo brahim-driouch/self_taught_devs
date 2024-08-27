@@ -15,6 +15,13 @@
       "when": 1723925280755,
       "tag": "0001_modern_tyrannus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1724795111082,
+      "tag": "0002_lethal_deathbird",
+      "breakpoints": true
     }
   ]
 }

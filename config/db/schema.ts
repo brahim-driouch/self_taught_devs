@@ -1,4 +1,6 @@
+import Projects from "@/app/_components/profilePage/Projects";
 import { time } from "console";
+import { relations } from "drizzle-orm";
 import {
     boolean,
     timestamp,
@@ -9,9 +11,11 @@ import {
     pgSchema,
     pgEnum,
     PgDate,
+    varchar,
   } from "drizzle-orm/pg-core"
  
   import type { AdapterAccountType } from "next-auth/adapters"
+import LinkedIn from "next-auth/providers/linkedin";
    
 
 
@@ -38,8 +42,32 @@ import {
       .$defaultFn(() => crypto.randomUUID()),
     userId: text("userId")
     .notNull()
-    .references(() => users.id, { onDelete: "cascade" })
+    .references(() => users.id, { onDelete: "cascade" }),
+    about:varchar("about",{length:250}),
+    website:varchar("website",{length:250}),
+    github:varchar("github",{length:250}),
+    LinkedIn:varchar("linkedIn",{length:250}),
+    skills:varchar("skills",{length:350}),
+    technologies:text("technologies")
+   
   })
+
+
+  export const projects = pgTable("projects",{
+    id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+    title:varchar("title",{length:250}),
+    description:text("description"),
+    link:varchar("link",{length:250}).default(""),
+    screenshot:text("screenshot").default(""),
+    repo:text("repo").default("")
+
+  })
+
+  export const userProjects = relations(users,({many})=>({
+    projects:many(projects)
+  }))
    
 export const accounts = pgTable(
     "account",

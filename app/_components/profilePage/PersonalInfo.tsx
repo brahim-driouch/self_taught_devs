@@ -22,7 +22,7 @@ const PersonalInfo = () => {
   return  (
   <Suspense>
       <div className="w-full flex flex-col ">
-      <div className="w-full flex  items-center justify-between gap-2 rounded bg-gray-50/50 border p-10 ">
+      <div className="w-full flex  items-center justify-between gap-2 dark:border-b-gray-700 border-b p-10 ">
         
           <div className="relative ">
             <Image
@@ -51,8 +51,9 @@ const PersonalInfo = () => {
       </div>
           </div>
          
-         
+        
       </div>
+     
       
     </div>
   </Suspense>
