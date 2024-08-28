@@ -45,8 +45,8 @@ import LinkedIn from "next-auth/providers/linkedin";
     .references(() => users.id, { onDelete: "cascade" }),
     about:varchar("about",{length:250}),
     website:varchar("website",{length:250}),
-    github:varchar("github",{length:250}),
-    LinkedIn:varchar("linkedIn",{length:250}),
+    github:varchar("github",{length:250}).default(""),
+    LinkedIn:varchar("linkedIn",{length:250}).default(""),
     skills:varchar("skills",{length:350}),
     technologies:text("technologies")
    

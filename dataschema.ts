@@ -52,3 +52,26 @@ export const developerSchema = z.object({
 
 export type DeveloperType = z.infer<typeof developerSchema>
 
+
+export const profileSchema = z.object({
+    id:z.string().optional(),
+    userId:z.string({message:"user id missing."}),
+    about:z.string().min(150,{message:"About section must be at least 200 characters."}),
+    website:z.string().optional(),
+    github:z.string().optional(),
+    LinkedIn:z.string().optional(),
+    skills:z.string({message:"Please briefly describe your skills."}),
+    technologies:z.string({message:"You need to specify at least one technology you are comfortable with."})
+})
+
+export type ProfileType = z.infer<typeof profileSchema>
+
+export const projectSchema = z.object({
+    id:z.string().optional(),
+    title:z.string().min(1,{message:"Please choose a title for your project."}),
+    description:z.string().min(30,{message:"Please add a project description, no less than 30 charactetrs."}),
+    link:z.string().default(""),
+    screenshot:z.string().default(""),
+    repo:z.string().default("")
+})
+export type ProjectType = z.infer<typeof projectSchema>

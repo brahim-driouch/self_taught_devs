@@ -1,5 +1,5 @@
 import { DEV_REGISTRATION } from "@/constants/endpoints";
-import { DeveloperType } from "@/dataSchama";
+import { DeveloperType } from "@/dataschema";
 import axios from "axios";
 
 

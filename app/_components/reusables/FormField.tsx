@@ -1,4 +1,4 @@
-import { FormFieldProps } from "@/dataSchama";
+import { FormFieldProps } from "@/dataschema";
 
 
 const FormField: React.FC<FormFieldProps> = ({

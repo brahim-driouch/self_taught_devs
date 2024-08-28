@@ -6,12 +6,13 @@ import { BsGithub } from "react-icons/bs";
 import { CgWebsite } from "react-icons/cg";
 import { MdEmail } from "react-icons/md";
 import { BiEdit, BiLink } from "react-icons/bi";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { CircleLoader } from "react-spinners";
+import EditPersonalInfo from "./EditPersonalInfo";
 
 const PersonalInfo = () => {
+  const [editPersonnalInfo,setEditPersonnalInfo]=useState(false)
   const session = useSession();
- 
   const user = session.data?.user;
 
   if(!session?.data?.user) return  (
@@ -19,9 +20,15 @@ const PersonalInfo = () => {
      <CircleLoader color="#d9d3d2" />
    </div>
   );
+
+  const showEditPersonnalInfo = ()=>{
+    setEditPersonnalInfo(prev=>!prev)
+  }
   return  (
   <Suspense>
-      <div className="w-full flex flex-col ">
+      <div className="w-full flex flex-col  ">
+      {editPersonnalInfo && <EditPersonalInfo showEditPersonnalInfo={showEditPersonnalInfo}/>}
+
       <div className="w-full flex  items-center justify-between gap-2 dark:border-b-gray-700 border-b p-10 ">
         
           <div className="relative ">
@@ -46,7 +53,7 @@ const PersonalInfo = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, assumenda. Tenetur esse excepturi enim pariatur, commodi odio accusamus officia. Sit.
           </p>
           <div className="w-full flex justify-end">
-        <BiEdit/>
+        <BiEdit onClick={showEditPersonnalInfo} className="hover:text-gray-600 cursor-pointer"/>
 
       </div>
           </div>

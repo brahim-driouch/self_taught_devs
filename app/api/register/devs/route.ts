@@ -1,5 +1,5 @@
 import userController from "@/controllers";
-import { DeveloperType, MyResponseType } from "@/dataSchama";
+import { DeveloperType, MyResponseType } from "@/dataschema";
 import { NextResponse } from "next/server";
 import { ZodIssue } from "zod";
 

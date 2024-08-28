@@ -1,6 +1,6 @@
 "use server"
 import { signIn, signOut } from "@/auth";
-import { developerSchema, DeveloperType ,MyResponseType} from "@/dataSchama";
+import { developerSchema, DeveloperType ,MyResponseType} from "@/dataschema";
 import { error } from "console";
 export async function registerNewUser(dev:DeveloperType):Promise<MyResponseType> {
     

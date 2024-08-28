@@ -1,7 +1,7 @@
 
 
 "use client"
-import {  developerSchema, DeveloperType, loginFiledNames, userFieldNames, ValidDeveloperFormNames } from "@/dataSchama"
+import {  developerSchema, DeveloperType, loginFiledNames, userFieldNames, ValidDeveloperFormNames } from "@/dataschema"
 import FormField from "../../reusables/FormField"
 import { FieldError, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

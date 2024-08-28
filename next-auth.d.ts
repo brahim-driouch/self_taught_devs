@@ -1,5 +1,5 @@
 import NextAuth, { DefaultSession } from "next-auth"
-import { AccountType } from "./dataSchama"
+import { AccountType } from "./dataschema"
 
 declare module "next-auth" {
   /**
