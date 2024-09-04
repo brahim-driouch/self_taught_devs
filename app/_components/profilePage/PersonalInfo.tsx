@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { Suspense, useState } from "react";
 import { CircleLoader } from "react-spinners";
-import EditPersonalInfo from "./EditPersonalInfo";
+import { editableContent } from "../common/EditContainer";
 
 const PersonalInfo = () => {
   const session = useSession();

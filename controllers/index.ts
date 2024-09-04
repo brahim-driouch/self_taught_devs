@@ -4,7 +4,7 @@ import { logout, registerNewUser, signInWithGoogle } from "./users/userControlle
 const userController = {
     registerNewUser,
     logout,
-    signInWithGoogle
+    signInWithGoogle,
 }
 
 

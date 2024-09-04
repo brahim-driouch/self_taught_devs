@@ -1,6 +1,7 @@
 "use server"
 import { signIn, signOut } from "@/auth";
-import { developerSchema, DeveloperType ,MyResponseType} from "@/dataschema";
+import { developerSchema, DeveloperType ,MyResponseType, PersonnalInfoEditionType} from "@/dataschema";
+import userService from "@/http/users";
 import { error } from "console";
 export async function registerNewUser(dev:DeveloperType):Promise<MyResponseType> {
     
@@ -56,3 +57,6 @@ export async function logout(){
         redirectTo:"/"
     })
 }
+
+
+

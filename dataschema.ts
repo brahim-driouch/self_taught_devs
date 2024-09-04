@@ -1,4 +1,4 @@
-import { FieldError, UseFormRegister } from 'react-hook-form';
+import { FieldError, FieldValue, FieldValues, UseFormRegister } from 'react-hook-form';
 import { ZodIssue } from 'zod';
 import * as z from "zod"
 
@@ -13,15 +13,16 @@ export enum AccountType  {
     Employer = "Employer"
 
 }
+
 export const userFieldNames = ["username","name","email","password","passwordConfirmation"]
 export const loginFiledNames = ["email","password"]
-export type ValidDeveloperFormNames = "username" |  "name" | "email" | "password" | "passwordConfirmation" | "isVerfied" | "AccountType" | "createdAt" | "updatedAt"
+export type ValidDeveloperFormNames = "username" |  "name" | "email" | "password" | "passwordConfirmation" 
 
-export type FormFieldProps = {
+export type FormFieldProps<T extends FieldValues> = {
     type: string;
     placeholder: string;
-    name: ValidDeveloperFormNames;
-    register: UseFormRegister<DeveloperType>;
+    name: string;
+    register: UseFormRegister<T>;
     error: FieldError | undefined;
     cssClass : string
 
@@ -75,3 +76,34 @@ export const projectSchema = z.object({
     repo:z.string().default("")
 })
 export type ProjectType = z.infer<typeof projectSchema>
+
+
+
+export const personnalInfoEditionSchema = z.object({
+    name : z.string().min(4,{message:" name is required and must be at least 4 characters. "}),
+    email:z.string().email({message:"Please enter a valid email."}),
+    password:z.string().optional(),
+    passwordConfirmation:z.string().optional()
+
+}).superRefine((data,ctx)=>{
+    if(data.password){
+        if(data.password.length <8){
+            ctx.addIssue({
+                message:"Password must be at least 8 characters.",
+                code:"custom",
+                path:["password"]
+            })
+        }
+        if(data.password !== data.passwordConfirmation){
+            ctx.addIssue({
+                message:"Passwords don't match",
+                code:"custom",
+                path:["passwordConfirmation"]
+            })
+        }
+    }
+})
+
+export  type PersonnalInfoEditionType =z.infer<typeof personnalInfoEditionSchema>
+export const personnalInfoEditionFields = ["name","email"]
+export type ValidPersonnalInfoFieldNames = "name"|"email"

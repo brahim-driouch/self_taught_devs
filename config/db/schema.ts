@@ -12,6 +12,7 @@ import {
     pgEnum,
     PgDate,
     varchar,
+    PgBoolean,
   } from "drizzle-orm/pg-core"
  
   import type { AdapterAccountType } from "next-auth/adapters"

@@ -12,7 +12,8 @@ declare module "next-auth" {
       image:string,
       id:string,
       name:string,
-      email:string
+      email:string,
+      hasPassword:boolean
     } 
   }
   // interface User {

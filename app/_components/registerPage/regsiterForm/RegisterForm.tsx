@@ -1,6 +1,5 @@
 "use client"
-import {  developerSchema, DeveloperType, userFieldNames, ValidDeveloperFormNames } from "@/dataschema"
-import FormField from "../../reusables/FormField"
+import {  developerSchema, DeveloperType, FormFieldProps, PersonnalInfoEditionType, userFieldNames, ValidDeveloperFormNames } from "@/dataschema"
 import { FieldError, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import userService from "@/http/users";
@@ -8,23 +7,18 @@ import { PiGoogleLogo } from "react-icons/pi";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "@/auth";
 import { signInWithGoogle } from "@/controllers/users/userController";
+import { formatFieldName } from "@/utils/formatFieldName";
 
-// TODO   IMPLEMENT REGISTERATION USING STATE OR ACIONS WITH FORMDTA
+
 
 const RegisterForm = () => {
-  const inputClass = "w-full p-2  border dark:border-gray-700 rounded bg-inherit outline-none focus:border-2 dark:focus:border-yellow-100 "
   const { register, handleSubmit, formState: { errors } } = useForm<DeveloperType>({
     resolver:zodResolver(developerSchema),
     mode:'all'
   });
 
-  function formatFieldName(fieldName: string): string {
-    // Replace camelCase transitions with spaces
-    const spacedString = fieldName.replace(/([a-z])([A-Z])/g, '$1 $2');
+ 
   
-    // Capitalize the first letter
-    return spacedString.charAt(0).toUpperCase() + spacedString.slice(1);
-  }
   const onsubmit: SubmitHandler<DeveloperType> = async (data )=>{
     
     try {
@@ -43,15 +37,27 @@ const RegisterForm = () => {
     <div className="w-full ">
        <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-2">
            {userFieldNames.map((fieldName)=>(
-            <FormField
-            key={fieldName}
-            type= {fieldName === "email" ? "email" : fieldName === "password" || fieldName === "passwordConfirmation" ? "password" : "text"}
-            placeholder={formatFieldName(fieldName)}           
-            register={register}
-            name={fieldName as ValidDeveloperFormNames}
-            error={errors[fieldName as keyof typeof errors] as FieldError}
-            cssClass={`${errors[fieldName as keyof typeof errors]?.message  ? "  border-red-500  ": "  "} ${inputClass}`}
-            />
+              <div>
+              <input
+                className={ "w-full p-2  border dark:border-gray-700 rounded bg-inherit outline-none focus:border-2 dark:focus:border-yellow-100 "}
+                type={
+                  fieldName === "email"
+                    ? "email"
+                    : fieldName === "password" ||
+                      fieldName === "passwordConfirmation"
+                    ? "password"
+                    : "text"
+                }
+                placeholder={formatFieldName(fieldName)}
+                {...register(fieldName as ValidDeveloperFormNames)}
+              />
+              {(errors[fieldName as keyof typeof errors] as FieldError) && (
+                <span className="text-red-500 text-sm">
+                  {errors[fieldName as keyof typeof errors]?.message}
+                </span>
+              )}
+            </div>
+           
            ))}
            
            <button type="submit"  className="w-full p-2 outline-none text-white none rounded bg-blue-500 hover:bg-blue-600">

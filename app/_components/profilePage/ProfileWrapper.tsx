@@ -1,25 +1,28 @@
 "use client"
 
 import { useState } from "react"
-import EditPersonalInfo from "./EditPersonalInfo"
 import PersonalInfo from "./PersonalInfo"
 import SocialProifiles from "./SocilaProfiles"
 import About from "./About"
 import Technologies from "./Technologies"
+import EditContainer, { editableContent } from "../common/EditContainer"
+import { BiEdit } from "react-icons/bi"
 
 
 
 const ProfileWrapper = () => {
-    const [editPersonnalInfo,setEditPersonnalInfo]=useState(false)
+    const [editable,setEditable]=useState<keyof typeof editableContent | null>(null)
 
-    const showEditPersonnalInfo = ()=>{
-        setEditPersonnalInfo(prev=>!prev)
-      }
+   
 
   return (
     <div>
-         {editPersonnalInfo && <EditPersonalInfo showEditPersonnalInfo={showEditPersonnalInfo}/>}
-            <PersonalInfo/>
+      {editable &&          <EditContainer setEditable={setEditable}editable={editable}/>
+    }
+           <div className="flex justify-between items-start">
+           <PersonalInfo/>
+           <BiEdit onClick={()=>setEditable("personnalInfo")}/>
+           </div>
             <SocialProifiles/>
             <About/>
             <Technologies/>
