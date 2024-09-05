@@ -1,8 +1,13 @@
 "use server"
 import { signIn, signOut } from "@/auth";
+import { db } from "@/config/db";
+import { users } from "@/config/db/schema";
 import { developerSchema, DeveloperType ,MyResponseType, PersonnalInfoEditionType} from "@/dataschema";
 import userService from "@/http/users";
 import { error } from "console";
+import { eq } from "drizzle-orm";
+
+
 export async function registerNewUser(dev:DeveloperType):Promise<MyResponseType> {
     
     try {
@@ -56,6 +61,15 @@ export async function logout(){
     await signOut({
         redirectTo:"/"
     })
+}
+
+export async function updatePersonnalInfo(data:PersonnalInfoEditionType) {
+    return userService.updatePersonnalInfo(data)
+}
+
+export  async function getUserById(id:string){
+    const dbQuery = await db.select().from(users).where(eq(users.id,id))
+    return dbQuery[0]
 }
 
 

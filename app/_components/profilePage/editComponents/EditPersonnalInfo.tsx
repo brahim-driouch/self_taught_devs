@@ -8,12 +8,14 @@ import {
 } from "@/dataschema";
 import { formatFieldName } from "@/utils/formatFieldName";
 import { useSession } from "next-auth/react";
-import userController from "@/controllers";
+
 import axios from "axios";
 import { PERSONNAL_USER_INFO_UPDATE } from "@/constants/endpoints";
+import { toast } from "react-toastify";
 
 const EditPersonnalInfo = () => {
 const session = useSession()
+
 const user = session.data?.user
   const {
     watch,
@@ -34,17 +36,22 @@ const user = session.data?.user
   const watchedEmail = watch("email",user?.email)
   const onsubmit:SubmitHandler<PersonnalInfoEditionType> = async(data)=>{
       try {
-         await axios.put(PERSONNAL_USER_INFO_UPDATE,data,{
+       const response = await axios.put(PERSONNAL_USER_INFO_UPDATE,data,{
           headers:{
             "Content-Type":"application/json"
           }
-        })
+        })  
+        session.update(response.data)
+        toast.success(response.data.message)
+           
+      
       } catch (error) {
         console.log(error)
       }
   }
   return (
     <div className="w-full">
+
       <form className="w-full flex flex-col justify-start items-center gap-4 " onSubmit={handleSubmit(onsubmit)}>
         {personnalInfoEditionFields.map((fieldName) => (
           <div key={fieldName} className="w-full">

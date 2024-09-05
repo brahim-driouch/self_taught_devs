@@ -1,6 +1,7 @@
 import { db } from "@/config/db";
 import { users } from "@/config/db/schema";
 import { PersonnalInfoEditionType } from "@/dataschema";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 
@@ -14,13 +15,15 @@ export  async function PUT(req:Request){
         if(!data) {
             return NextResponse.json({error:"no data sent."},{status:400})
         }
-        await db.update(users).set({
+       const dbQuery = await db.update(users).set({
             name:data.name,
             email:data.email,
             password:data.password ?? ""
         })
+        revalidatePath("/in/profile")
         return NextResponse.json({
             message:"updated successfully",
+            data:dbQuery
 
         })
         

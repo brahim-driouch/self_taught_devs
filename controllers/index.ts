@@ -1,10 +1,12 @@
-import { logout, registerNewUser, signInWithGoogle } from "./users/userController";
+import { getUserById, logout, registerNewUser, signInWithGoogle, updatePersonnalInfo } from "./users/userController";
 
 
 const userController = {
     registerNewUser,
     logout,
     signInWithGoogle,
+    getUserById,
+    updatePersonnalInfo
 }
 
 

@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "./_components/common/topBar/Header";
 import ThemeProvider from "./providers/ThemeProvider";
 import AuthWrapper from "@/AuthWrapper";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -19,6 +21,8 @@ export default function RootLayout({
   return (
     <html className="dark:bg-gray-900" lang="en"  suppressHydrationWarning>
       <body className={" dark:text-gray-200 text-gray-600 font-light text-lg"}>
+      <ToastContainer />
+
         <AuthWrapper>
             <ThemeProvider>
               <main className="max-w-6xl mx-auto flex  min-h-screen flex-col justify-start items-center ">
